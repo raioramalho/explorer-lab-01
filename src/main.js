@@ -26,9 +26,17 @@ function setCardType(type) {
 }
 // "setCardType" Chamando função.
 //
-setCardType("cielo")
+setCardType("default")
 
 // 1a tentativa de pegar o valor do formulário "Número do cartão";
 const ccGetFormNum = document.querySelector("#card-number")
 const ccFormNum = ccGetFormNum.value
-console.log({ ccFormNum })
+
+// Craindo função para mudar de acordo com o número.
+
+if (/^5/.test(ccGetFormNum.value)) {
+  console.log({ ccFormNum })
+  setCardType("mastercard")
+} else {
+  setCardType("default")
+}
