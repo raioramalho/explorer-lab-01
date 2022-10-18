@@ -48,5 +48,6 @@ function ccCheck() {
     console.log("Seu cartão é cielo!")
   } else {
     setCardType("default")
+    console.log("Bandeira não encontrada!")
   }
 }
