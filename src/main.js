@@ -44,7 +44,7 @@ function ccCheck() {
     if (/^5[1-5]/.test(ccGetFormNum)) {
       setCardType("mastercard")
       console.log("Seu cartão é mastercard!")
-    } else if (/^4/.test(ccGetFormNum)) {
+    } else if (/^4\d{0,15}/.test(ccGetFormNum)) {
       setCardType("visa")
       console.log("Seu cartão é visa!")
     } else if (/^50/.test(ccGetFormNum)) {
@@ -65,7 +65,12 @@ function ccCheck() {
 const cardNumPattern = {
   mask: "0000{.}0000{.}0000{.}0000",
 }
-const cardNumMasked = IMask(cardNum, cardNumPattern)
+const cardNumMasked = IMask(
+  document.querySelector("#card-number"),
+  cardNumPattern
+)
+
+const cardValue = IMask(document.querySelector("cc-number"), cardNumPattern)
 
 //CVC
 const secCode = document.getElementById("security-code")
