@@ -30,7 +30,6 @@ function setCardType(type) {
 setCardType("default")
 
 // 1a tentativa de pegar o valor do formulário "Número do cartão";
-
 // Craindo função para mudar de acordo com o número.
 
 const cardNum = document.getElementById("card-number")
@@ -40,7 +39,7 @@ function ccCheck() {
   const ccGetFormNum = document.querySelector("#card-number").value
   console.log({ ccGetFormNum })
 
-  if (ccGetFormNum.length > 0 && ccGetFormNum.length < 17) {
+  if (ccGetFormNum.length > 0 && ccGetFormNum.length < 17 + 4) {
     if (/^5[1-5]/.test(ccGetFormNum)) {
       setCardType("mastercard")
       console.log("Seu cartão é mastercard!")
@@ -62,11 +61,34 @@ function ccCheck() {
 }
 
 //Tratando formulário com imask "npm install imask"
+const cardNumPattern = {
+  mask: "0000.0000.0000.0000",
+}
+const cardNumMasked = IMask(cardNum, cardNumPattern)
+
 //CVC
 const secCode = document.getElementById("security-code")
-secCode.setAttribute("value", 123)
 //IMASK
 const secCodePattern = {
-  mask: "0000",
+  mask: "0000", //Apenas números e no máximo 4 caracteres.
 }
 const secCodeMasked = IMask(secCode, secCodePattern)
+
+//Expiration Date
+const expDate = document.getElementById("expiration-date")
+const expDatePattern = {
+  mask: "MM{/}YY",
+  blocks: {
+    MM: {
+      mask: IMask.MaskedRange,
+      from: 1,
+      to: 12,
+    },
+    YY: {
+      mask: IMask.MaskedRange,
+      from: new Date().getFullYear(),
+      to: new Date().getFullYear() + 10,
+    },
+  }, //Formato de data.
+}
+const expDateMasked = IMask(expDate, expDatePattern)
