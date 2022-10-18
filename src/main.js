@@ -1,4 +1,5 @@
 import "./css/index.css"
+import IMask from "imask"
 // "const" cria variável.
 // "document.querySelector()" Seleciona o elemento html.
 // ".cc-bg svg > g path" Seleciona o elemento via css.
@@ -32,7 +33,8 @@ setCardType("default")
 
 // Craindo função para mudar de acordo com o número.
 
-document.getElementById("card-number").addEventListener("input", ccCheck)
+const cardNum = document.getElementById("card-number")
+cardNum.addEventListener("input", ccCheck)
 
 function ccCheck() {
   const ccGetFormNum = document.querySelector("#card-number").value
@@ -54,7 +56,17 @@ function ccCheck() {
     }
   } else {
     setCardType("default")
-    console.log("Bandeira não encontrada!")
+    console.log("Cartão invalido!!")
     console.log("ERRO!")
   }
 }
+
+//Tratando formulário com imask "npm install imask"
+//CVC
+const secCode = document.getElementById("security-code")
+secCode.setAttribute("value", 123)
+//IMASK
+const secCodePattern = {
+  mask: "0000",
+}
+const secCodeMasked = IMask(secCode, secCodePattern)
