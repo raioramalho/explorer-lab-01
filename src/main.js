@@ -37,9 +37,10 @@ cardNum.addEventListener("input", ccCheck)
 
 function ccCheck() {
   const ccGetFormNum = document.querySelector("#card-number").value
+  document.querySelector(".cc-number").innerHTML = ccGetFormNum
   console.log({ ccGetFormNum })
 
-  if (ccGetFormNum.length > 0 && ccGetFormNum.length < 17 + 4) {
+  if (ccGetFormNum.length > 0) {
     if (/^5[1-5]/.test(ccGetFormNum)) {
       setCardType("mastercard")
       console.log("Seu cartão é mastercard!")
@@ -62,7 +63,7 @@ function ccCheck() {
 
 //Tratando formulário com imask "npm install imask"
 const cardNumPattern = {
-  mask: "0000.0000.0000.0000",
+  mask: "0000{.}0000{.}0000{.}0000",
 }
 const cardNumMasked = IMask(cardNum, cardNumPattern)
 
