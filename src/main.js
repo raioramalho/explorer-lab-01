@@ -37,17 +37,24 @@ document.getElementById("card-number").addEventListener("input", ccCheck)
 function ccCheck() {
   const ccGetFormNum = document.querySelector("#card-number").value
   console.log({ ccGetFormNum })
-  if (/^5[1-5]/.test(ccGetFormNum)) {
-    setCardType("mastercard")
-    console.log("Seu cartão é mastercard!")
-  } else if (/^4/.test(ccGetFormNum)) {
-    setCardType("visa")
-    console.log("Seu cartão é visa!")
-  } else if (/^50/.test(ccGetFormNum)) {
-    setCardType("cielo")
-    console.log("Seu cartão é cielo!")
+
+  if (ccGetFormNum.length > 0 && ccGetFormNum.length < 17) {
+    if (/^5[1-5]/.test(ccGetFormNum)) {
+      setCardType("mastercard")
+      console.log("Seu cartão é mastercard!")
+    } else if (/^4/.test(ccGetFormNum)) {
+      setCardType("visa")
+      console.log("Seu cartão é visa!")
+    } else if (/^50/.test(ccGetFormNum)) {
+      setCardType("cielo")
+      console.log("Seu cartão é cielo!")
+    } else {
+      setCardType("default")
+      console.log("Bandeira não encontrada!")
+    }
   } else {
     setCardType("default")
     console.log("Bandeira não encontrada!")
+    console.log("ERRO!")
   }
 }
