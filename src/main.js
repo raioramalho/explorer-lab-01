@@ -29,14 +29,24 @@ function setCardType(type) {
 setCardType("default")
 
 // 1a tentativa de pegar o valor do formulário "Número do cartão";
-const ccGetFormNum = document.querySelector("#card-number")
-const ccFormNum = ccGetFormNum.value
 
 // Craindo função para mudar de acordo com o número.
 
-if (/^5/.test(ccGetFormNum.value)) {
-  console.log({ ccFormNum })
-  setCardType("mastercard")
-} else {
-  setCardType("default")
+document.getElementById("card-number").addEventListener("input", ccCheck)
+
+function ccCheck() {
+  const ccGetFormNum = document.querySelector("#card-number").value
+  console.log({ ccGetFormNum })
+  if (/^5[1-5]/.test(ccGetFormNum)) {
+    setCardType("mastercard")
+    console.log("Seu cartão é mastercard!")
+  } else if (/^4/.test(ccGetFormNum)) {
+    setCardType("visa")
+    console.log("Seu cartão é visa!")
+  } else if (/^50/.test(ccGetFormNum)) {
+    setCardType("cielo")
+    console.log("Seu cartão é cielo!")
+  } else {
+    setCardType("default")
+  }
 }
