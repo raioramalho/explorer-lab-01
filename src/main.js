@@ -36,19 +36,23 @@ const expDate = document.getElementById("expiration-date")
 const cvcNum = document.getElementById("security-code")
 
 cardNum.addEventListener("input", ccCheck)
+cardHolder.addEventListener("input", ccAttHolder)
+
+function ccAttHolder() {
+  document.querySelector(".cc-holder > .value").innerHTML = cardHolder.value
+}
 
 function ccCheck() {
-  const ccGetFormNum = document.querySelector("#card-number").value
-  document.querySelector(".cc-number").innerHTML = ccGetFormNum
+  document.querySelector(".cc-number").innerHTML = cardNum.value
 
-  if (ccGetFormNum.length > 0) {
-    if (/^5[1-5]/.test(ccGetFormNum)) {
+  if (cardNum.value.length > 0) {
+    if (/^5[1-5]/.test(cardNum.value)) {
       setCardType("mastercard")
       console.log("Seu cartão é mastercard!")
-    } else if (/^4\d{0,15}/.test(ccGetFormNum)) {
+    } else if (/^4\d{0,15}/.test(cardNum.value)) {
       setCardType("visa")
       console.log("Seu cartão é visa!")
-    } else if (/^50/.test(ccGetFormNum)) {
+    } else if (/^50/.test(cardNum.value)) {
       setCardType("cielo")
       console.log("Seu cartão é cielo!")
     } else {
