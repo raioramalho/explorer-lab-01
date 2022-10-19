@@ -27,18 +27,19 @@ function setCardType(type) {
 }
 // "setCardType" Chamando função.
 //
-setCardType("default")
-
 // 1a tentativa de pegar o valor do formulário "Número do cartão";
 // Craindo função para mudar de acordo com o número.
 
 const cardNum = document.getElementById("card-number")
+const cardHolder = document.getElementById("card-holder")
+const expDate = document.getElementById("expiration-date")
+const cvcNum = document.getElementById("security-code")
+
 cardNum.addEventListener("input", ccCheck)
 
 function ccCheck() {
   const ccGetFormNum = document.querySelector("#card-number").value
   document.querySelector(".cc-number").innerHTML = ccGetFormNum
-  console.log({ ccGetFormNum })
 
   if (ccGetFormNum.length > 0) {
     if (/^5[1-5]/.test(ccGetFormNum)) {
@@ -70,8 +71,6 @@ const cardNumMasked = IMask(
   cardNumPattern
 )
 
-const cardValue = IMask(document.querySelector("cc-number"), cardNumPattern)
-
 //CVC
 const secCode = document.getElementById("security-code")
 //IMASK
@@ -81,7 +80,6 @@ const secCodePattern = {
 const secCodeMasked = IMask(secCode, secCodePattern)
 
 //Expiration Date
-const expDate = document.getElementById("expiration-date")
 const expDatePattern = {
   mask: "MM{/}YY",
   blocks: {
