@@ -75,13 +75,11 @@ const cardNumMasked = IMask(
   cardNumPattern
 )
 
-//CVC
-const secCode = document.getElementById("security-code")
 //IMASK
 const secCodePattern = {
   mask: "0000", //Apenas números e no máximo 4 caracteres.
 }
-const secCodeMasked = IMask(secCode, secCodePattern)
+const secCodeMasked = IMask(cvcNum, secCodePattern) //cvc mask
 
 //Expiration Date
 const expDatePattern = {
