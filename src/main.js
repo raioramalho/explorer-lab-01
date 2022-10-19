@@ -37,9 +37,18 @@ const cvcNum = document.getElementById("security-code")
 
 cardNum.addEventListener("input", ccCheck)
 cardHolder.addEventListener("input", ccAttHolder)
+expDate.addEventListener("input", ccAttExp)
+cvcNum.addEventListener("input", ccAttCvc)
 
 function ccAttHolder() {
   document.querySelector(".cc-holder > .value").innerHTML = cardHolder.value
+}
+function ccAttExp() {
+  document.querySelector("div .cc-expiration > .value").innerHTML =
+    expDate.value
+}
+function ccAttCvc() {
+  document.querySelector("div .cc-security > .value").innerHTML = cvcNum.value
 }
 
 function ccCheck() {
