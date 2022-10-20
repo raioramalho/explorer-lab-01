@@ -7,10 +7,8 @@ import IMask from "imask"
 const ccBgColor01 = document.querySelector(".cc-bg svg > g g:nth-child(1) path")
 const ccBgColor02 = document.querySelector(".cc-bg svg > g g:nth-child(2) path")
 const ccLogo = document.querySelector(".cc-logo span:nth-child(2) img")
-// "console.log()" printa uma mensagem no log do console.
-console.log({ ccBgColor01 })
-console.log({ ccBgColor02 })
-console.log({ ccLogo })
+// "
+
 // "setAttribute" Seta o valor do elemento. ("ELEMENTO", "VALOR").
 // "function" Criando função.
 function setCardType(type) {
@@ -26,6 +24,7 @@ function setCardType(type) {
   ccLogo.setAttribute("src", `cc-${type}.svg`) //Concatenando string.
 }
 // "setCardType" Chamando função.
+setCardType("default")
 //
 // 1a tentativa de pegar o valor do formulário "Número do cartão";
 // Craindo função para mudar de acordo com o número.
@@ -34,11 +33,19 @@ const cardNum = document.getElementById("card-number")
 const cardHolder = document.getElementById("card-holder")
 const expDate = document.getElementById("expiration-date")
 const cvcNum = document.getElementById("security-code")
+const addButton = document.getElementById("addButton")
+
+document.querySelector("form").addEventListener("submit", (event) => {
+  event.preventDefault()
+})
 
 cardNum.addEventListener("input", ccCheck)
 cardHolder.addEventListener("input", ccAttHolder)
 expDate.addEventListener("input", ccAttExp)
 cvcNum.addEventListener("input", ccAttCvc)
+addButton.addEventListener("click", () => {
+  console.log("Click!")
+})
 
 function ccAttHolder() {
   document.querySelector(".cc-holder > .value").innerHTML = cardHolder.value
@@ -57,21 +64,15 @@ function ccCheck() {
   if (cardNum.value.length > 0) {
     if (/^5[1-5]/.test(cardNum.value)) {
       setCardType("mastercard")
-      console.log("Seu cartão é mastercard!")
     } else if (/^4\d{0,15}/.test(cardNum.value)) {
       setCardType("visa")
-      console.log("Seu cartão é visa!")
     } else if (/^50/.test(cardNum.value)) {
       setCardType("cielo")
-      console.log("Seu cartão é cielo!")
     } else {
       setCardType("default")
-      console.log("Bandeira não encontrada!")
     }
   } else {
     setCardType("default")
-    console.log("Cartão invalido!!")
-    console.log("ERRO!")
   }
 }
 
