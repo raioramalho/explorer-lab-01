@@ -44,7 +44,14 @@ cardHolder.addEventListener("input", ccAttHolder)
 expDate.addEventListener("input", ccAttExp)
 cvcNum.addEventListener("input", ccAttCvc)
 addButton.addEventListener("click", () => {
-  console.log("Click!")
+  const cartao = {
+    cc: cardNum.value,
+    holder: cardHolder.value,
+    exp_date: expDate.value,
+    sec_code: cvcNum.value,
+  }
+
+  console.log(cartao)
 })
 
 function ccAttHolder() {
